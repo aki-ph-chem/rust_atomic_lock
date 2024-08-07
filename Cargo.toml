@@ -1,0 +1,10 @@
+[package]
+name = "rust_atomic_lock"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "thread"
+path = "src/ss_1/thread.rs"
+
+[dependencies]
