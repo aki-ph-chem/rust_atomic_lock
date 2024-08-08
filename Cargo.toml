@@ -43,4 +43,8 @@ path = "src/ss_2/stop_flag.rs"
 name = "progress_report"
 path = "src/ss_2/progress_report.rs"
 
+[[bin]]
+name = "progress_report_park"
+path = "src/ss_2/progress_report_park.rs"
+
 [dependencies]
