@@ -47,9 +47,12 @@ path = "src/ss_2/progress_report.rs"
 name = "progress_report_park"
 path = "src/ss_2/progress_report_park.rs"
 
-
 [[bin]]
 name = "fetch_and_modify"
 path = "src/ss_2/fetch_and_modify.rs"
+
+[[bin]]
+name = "progress_report_4_thread"
+path = "src/ss_2/progress_report_4_thread.rs"
 
 [dependencies]
