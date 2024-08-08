@@ -15,4 +15,8 @@ path = "src/ss_1/thread_scope.rs"
 name = "thread_static"
 path = "src/ss_1/thread_static.rs"
 
+[[bin]]
+name = "mutable"
+path = "src/ss_1/mutable.rs"
+
 [dependencies]
