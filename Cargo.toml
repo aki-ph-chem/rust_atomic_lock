@@ -39,4 +39,8 @@ path = "src/ss_1/condvar.rs"
 name = "stop_flag"
 path = "src/ss_2/stop_flag.rs"
 
+[[bin]]
+name = "progress_report"
+path = "src/ss_2/progress_report.rs"
+
 [dependencies]
