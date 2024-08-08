@@ -27,4 +27,8 @@ path = "src/ss_1/mutex.rs"
 name = "thread_parking"
 path = "src/ss_1/thread_parking.rs"
 
+[[bin]]
+name = "condvar"
+path = "src/ss_1/condvar.rs"
+
 [dependencies]
