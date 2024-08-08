@@ -23,4 +23,8 @@ path = "src/ss_1/mutable.rs"
 name = "mutex"
 path = "src/ss_1/mutex.rs"
 
+[[bin]]
+name = "thread_parking"
+path = "src/ss_1/thread_parking.rs"
+
 [dependencies]
