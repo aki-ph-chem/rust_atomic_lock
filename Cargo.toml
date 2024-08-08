@@ -3,6 +3,8 @@ name = "rust_atomic_lock"
 version = "0.1.0"
 edition = "2021"
 
+## ss_1
+
 [[bin]]
 name = "thread"
 path = "src/ss_1/thread.rs"
@@ -30,5 +32,11 @@ path = "src/ss_1/thread_parking.rs"
 [[bin]]
 name = "condvar"
 path = "src/ss_1/condvar.rs"
+
+## ss_2
+
+[[bin]]
+name = "stop_flag"
+path = "src/ss_2/stop_flag.rs"
 
 [dependencies]
