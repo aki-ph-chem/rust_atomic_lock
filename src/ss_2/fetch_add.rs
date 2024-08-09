@@ -42,7 +42,18 @@ fn allocate_new_id_decrement() -> u32 {
 
 // 解決法3
 // オーバーフローする可能性がある場合は加算を行わない
-// 比較交換操作が要るのでここでは述べない
+// compare_exchange()を使ってオーバーフローを防ぐ
+fn allocate_new_id_compare_exchange() -> u32 {
+    static NEXT_ID: AtomicU32 = AtomicU32::new(0);
+    let mut id = NEXT_ID.load(Relaxed);
+    loop {
+        assert!(id < 1000, "too many IDs");
+        match NEXT_ID.compare_exchange_weak(id, id + 1, Relaxed, Relaxed) {
+            Ok(_) => return id,
+            Err(v) => id = v,
+        }
+    }
+}
 
 fn main() {
     for i in 0..10 {
@@ -57,6 +68,11 @@ fn main() {
 
     for i in 0..10 {
         let id = allocate_new_id_decrement();
+        println!("{i} th: id: {id}");
+    }
+
+    for i in 0..10 {
+        let id = allocate_new_id_compare_exchange();
         println!("{i} th: id: {id}");
     }
 }
