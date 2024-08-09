@@ -67,5 +67,9 @@ path = "src/ss_2/fetch_add.rs"
 name = "init_lazy"
 path = "src/ss_2/init_lazy.rs"
 
+[[bin]]
+name = "compare_exchange"
+path = "src/ss_2/compare_exchange.rs"
+
 [dependencies]
 rand = "0.8.5"
