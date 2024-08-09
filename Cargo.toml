@@ -63,4 +63,9 @@ path = "src/ss_2/statistic_value.rs"
 name = "fetch_add"
 path = "src/ss_2/fetch_add.rs"
 
+[[bin]]
+name = "init_lazy"
+path = "src/ss_2/init_lazy.rs"
+
 [dependencies]
+rand = "0.8.5"
