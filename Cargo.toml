@@ -59,4 +59,8 @@ path = "src/ss_2/progress_report_4_thread.rs"
 name = "statistic_value"
 path = "src/ss_2/statistic_value.rs"
 
+[[bin]]
+name = "fetch_add"
+path = "src/ss_2/fetch_add.rs"
+
 [dependencies]
