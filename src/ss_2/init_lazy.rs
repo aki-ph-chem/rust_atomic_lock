@@ -18,6 +18,24 @@ fn get_x() -> u64 {
     x
 }
 
+// 遅延初期化が一度だけ行われるようにする
+fn get_key() -> u64 {
+    // 0で初期化
+    static KEY: AtomicU64 = AtomicU64::new(0);
+    // keyをロードする
+    let key = KEY.load(Relaxed);
+    if key == 0 {
+        // 初期化されていなかったらキーを生成
+        let new_key = random_key();
+        match KEY.compare_exchange(0, new_key, Relaxed, Relaxed) {
+            Ok(_) => new_key,
+            Err(k) => k,
+        }
+    } else {
+        key
+    }
+}
+
 // 初期化する用の関数
 // 1 ~ 10の乱数を生成する
 fn calculate_x() -> u64 {
@@ -25,9 +43,21 @@ fn calculate_x() -> u64 {
     rand.gen_range(1..=10)
 }
 
+// ランダムなキーを生成
+// 1 ~ 10の乱数を生成する
+fn random_key() -> u64 {
+    let mut rand = rand::thread_rng();
+    rand.gen_range(1..=10)
+}
+
 fn main() {
     for _ in 0..5 {
         let n = get_x();
+        println!("n: {n}");
+    }
+
+    for _ in 0..5 {
+        let n = get_key();
         println!("n: {n}");
     }
 }
