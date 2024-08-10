@@ -71,5 +71,11 @@ path = "src/ss_2/init_lazy.rs"
 name = "compare_exchange"
 path = "src/ss_2/compare_exchange.rs"
 
+## ss_3
+
+[[bin]]
+name = "happen_before_relation"
+path = "src/ss_3/happen_before_relation.rs"
+
 [dependencies]
 rand = "0.8.5"
