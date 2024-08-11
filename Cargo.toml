@@ -85,5 +85,9 @@ path = "src/ss_3/happen_before_relation_2.rs"
 name = "relaxed_ordering"
 path = "src/ss_3/relaxed_ordering.rs"
 
+[[bin]]
+name = "release_acquire_ordering"
+path = "src/ss_3/release_acquire_ordering.rs"
+
 [dependencies]
 rand = "0.8.5"
