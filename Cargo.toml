@@ -89,5 +89,9 @@ path = "src/ss_3/relaxed_ordering.rs"
 name = "release_acquire_ordering"
 path = "src/ss_3/release_acquire_ordering.rs"
 
+[[bin]]
+name = "release_acquire_ordering_2"
+path = "src/ss_3/release_acquire_ordering_2.rs"
+
 [dependencies]
 rand = "0.8.5"
