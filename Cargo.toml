@@ -93,5 +93,9 @@ path = "src/ss_3/release_acquire_ordering.rs"
 name = "release_acquire_ordering_2"
 path = "src/ss_3/release_acquire_ordering_2.rs"
 
+[[bin]]
+name = "release_acquire_ordering_lock"
+path = "src/ss_3/release_acquire_ordering_lock.rs"
+
 [dependencies]
 rand = "0.8.5"
