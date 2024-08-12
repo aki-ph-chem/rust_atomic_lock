@@ -105,5 +105,9 @@ path = "src/ss_3/release_acquire_ordering_init.rs"
 name = "seq_cst"
 path = "src/ss_3/seq_cst.rs"
 
+[[bin]]
+name = "release_acquire_fence"
+path = "src/ss_3/release_acquire_fence.rs"
+
 [dependencies]
 rand = "0.8.5"
