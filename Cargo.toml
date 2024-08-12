@@ -109,5 +109,11 @@ path = "src/ss_3/seq_cst.rs"
 name = "release_acquire_fence"
 path = "src/ss_3/release_acquire_fence.rs"
 
+## ss_4
+
+[[bin]]
+name = "spinlock_unsafe"
+path = "src/ss_3/spinlock_unsafe.rs"
+
 [dependencies]
 rand = "0.8.5"
