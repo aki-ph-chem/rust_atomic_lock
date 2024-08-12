@@ -115,5 +115,10 @@ path = "src/ss_3/release_acquire_fence.rs"
 name = "spinlock_unsafe"
 path = "src/ss_4/spinlock_unsafe.rs"
 
+## ss_5
+[[bin]]
+name = "channel_simple"
+path = "src/ss_5/channel_simple.rs"
+
 [dependencies]
 rand = "0.8.5"
