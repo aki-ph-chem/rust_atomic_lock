@@ -125,5 +125,9 @@ path = "src/ss_5/channel_simple.rs"
 name = "channel_one_shot"
 path = "src/ss_5/channel_one_shot.rs"
 
+[[bin]]
+name = "channel_one_shot_save_mem"
+path = "src/ss_5/channel_one_shot_save_mem.rs"
+
 [dependencies]
 rand = "0.8.5"
