@@ -49,3 +49,13 @@ impl<T> Channel<T> {
         unsafe { (*self.message.get()).assume_init_read() }
     }
 }
+
+// Drop traitの実装
+impl<T> Drop for Channel<T> {
+    fn drop(&mut self) {
+        // アトミック操作を用いていない
+        if *self.ready.get_mut() {
+            unsafe { self.message.get_mut().assume_init_drop() }
+        }
+    }
+}
