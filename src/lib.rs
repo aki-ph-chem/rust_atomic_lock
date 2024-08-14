@@ -9,3 +9,4 @@ pub use crate::channel::channel_type;
 pub use crate::channel::channel_unsafe;
 pub mod arc;
 pub use crate::arc::arc_simple;
+pub use crate::arc::arc_weak;
