@@ -34,6 +34,18 @@ impl<T> Arc<T> {
     fn data(&self) -> &ArcData<T> {
         unsafe { self.ptr.as_ref() }
     }
+
+    /// 排他参照を得る関連関数(メソッドではない)
+    pub fn get_mut(arc: &mut Self) -> Option<&mut T> {
+        if arc.data().ref_count.load(Relaxed) == 1 {
+            fence(Acquire);
+            // 安全性: Arcは一つしかないので、他の何もデータにアクセスできない
+            // そのArcに対してこのスレッドが排他アクセス権を持っている。
+            unsafe { Some(&mut arc.ptr.as_mut().data) }
+        } else {
+            None
+        }
+    }
 }
 
 // 共有参照のみ実装(排他参照は実装しない)
@@ -108,5 +120,25 @@ mod tests {
 
         // yもdropされたので、オブジェクトもdropされたはず
         assert_eq!(NUM_DROPS.load(Relaxed), 1);
+    }
+
+    #[test]
+    fn test_arc_get_mut() {
+        let mut x_arc = Arc::new(("Hello", 12));
+        assert_eq!(x_arc.0, "Hello");
+        assert_eq!(x_arc.1, 12);
+
+        // 別スレッドを建てて内容を書き換える
+        thread::scope(|s| {
+            s.spawn(|| {
+                let ref_mut_x_arc = Arc::get_mut(&mut x_arc);
+                if let Some(data) = ref_mut_x_arc {
+                    *data = ("World", 23);
+                }
+            });
+        });
+
+        assert_eq!(x_arc.0, "World");
+        assert_eq!(x_arc.1, 23);
     }
 }
