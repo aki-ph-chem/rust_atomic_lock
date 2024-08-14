@@ -52,14 +52,12 @@ impl<T> Clone for Arc<T> {
             std::process::abort();
         }
 
-        self.data().ref_count.fetch_add(1, Relaxed);
         Arc { ptr: self.ptr }
     }
 }
 
 impl<T> Drop for Arc<T> {
     fn drop(&mut self) {
-        // ToDo: メモリーオーダリング(とりあえずRlexedを入れておいた)
         if self.data().ref_count.fetch_sub(1, Release) == 1 {
             fence(Acquire);
             unsafe {
