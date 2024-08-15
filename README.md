@@ -13,3 +13,5 @@
 ## [ss\_5 チャネルの実装](./src/channel)
 
 [例](./src/ss_5/)
+
+## [ss\_6 Arc\<T\>の実装](./src/arc)
