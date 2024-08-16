@@ -32,7 +32,7 @@ impl<T> Mutex<T> {
             // 状態を2にスワップする
             // 状態が1または2ならwait()で待機
             while self.state.swap(2, Acquire) != 0 {
-                atomic_wait::wait(&self.state, 1);
+                atomic_wait::wait(&self.state, 2);
             }
         }
 
