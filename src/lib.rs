@@ -14,3 +14,4 @@ pub use crate::arc::arc_weak;
 pub mod cpu;
 pub mod lock;
 pub use crate::lock::mutex;
+pub use crate::lock::mutex_opt;
