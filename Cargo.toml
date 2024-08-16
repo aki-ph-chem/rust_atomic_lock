@@ -151,5 +151,13 @@ path = "src/ss_7/load_billion_thread.rs"
 name = "load_billion_thread_2"
 path = "src/ss_7/load_billion_thread_2.rs"
 
+[[bin]]
+name = "load_3_variable"
+path = "src/ss_7/load_3_variable.rs"
+
+[[bin]]
+name = "load_3_variable_2"
+path = "src/ss_7/load_3_variable_2.rs"
+
 [dependencies]
 rand = "0.8.5"
