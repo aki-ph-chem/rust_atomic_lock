@@ -169,6 +169,12 @@ path = "src/ss_7/experiment_ordering.rs"
 name = "futex"
 path = "src/ss_8/futex.rs"
 
+## ss_9
+
+[[bin]]
+name = "mutex_perf"
+path = "src/ss_9/mutex_perf.rs"
+
 [dependencies]
 atomic-wait = "1"
 libc = "0.2.156"
