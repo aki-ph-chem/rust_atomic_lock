@@ -175,6 +175,10 @@ path = "src/ss_8/futex.rs"
 name = "mutex_perf"
 path = "src/ss_9/mutex_perf.rs"
 
+[[bin]]
+name = "mutex_4thread_perf"
+path = "src/ss_9/mutex_4thread_perf.rs"
+
 [dependencies]
 atomic-wait = "1"
 libc = "0.2.156"
