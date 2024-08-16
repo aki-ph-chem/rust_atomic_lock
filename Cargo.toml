@@ -143,5 +143,13 @@ path = "src/ss_5/channel_one_shot_ref.rs"
 name = "load_billion"
 path = "src/ss_7/load_billion.rs"
 
+[[bin]]
+name = "load_billion_thread"
+path = "src/ss_7/load_billion_thread.rs"
+
+[[bin]]
+name = "load_billion_thread_2"
+path = "src/ss_7/load_billion_thread_2.rs"
+
 [dependencies]
 rand = "0.8.5"
