@@ -163,5 +163,12 @@ path = "src/ss_7/load_3_variable_2.rs"
 name = "experiment_ordering"
 path = "src/ss_7/experiment_ordering.rs"
 
+## ss_8
+
+[[bin]]
+name = "futex"
+path = "src/ss_8/futex.rs"
+
 [dependencies]
+libc = "0.2.156"
 rand = "0.8.5"
