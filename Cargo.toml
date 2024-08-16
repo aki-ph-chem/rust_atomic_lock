@@ -170,5 +170,6 @@ name = "futex"
 path = "src/ss_8/futex.rs"
 
 [dependencies]
+atomic-wait = "1"
 libc = "0.2.156"
 rand = "0.8.5"
