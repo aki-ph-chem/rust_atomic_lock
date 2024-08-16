@@ -137,5 +137,11 @@ path = "src/ss_5/channel_one_shot_type.rs"
 name = "channel_one_shot_ref"
 path = "src/ss_5/channel_one_shot_ref.rs"
 
+## ss_7
+
+[[bin]]
+name = "load_billion"
+path = "src/ss_7/load_billion.rs"
+
 [dependencies]
 rand = "0.8.5"
