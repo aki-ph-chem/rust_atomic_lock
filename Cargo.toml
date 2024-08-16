@@ -159,5 +159,9 @@ path = "src/ss_7/load_3_variable.rs"
 name = "load_3_variable_2"
 path = "src/ss_7/load_3_variable_2.rs"
 
+[[bin]]
+name = "experiment_ordering"
+path = "src/ss_7/experiment_ordering.rs"
+
 [dependencies]
 rand = "0.8.5"
