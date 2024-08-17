@@ -14,6 +14,7 @@ pub use crate::arc::arc_weak;
 pub mod cpu;
 pub mod lock;
 pub use crate::lock::condvar;
+pub use crate::lock::condvar_opt;
 pub use crate::lock::mutex;
 pub use crate::lock::mutex_opt;
 pub use crate::lock::mutex_spin;
