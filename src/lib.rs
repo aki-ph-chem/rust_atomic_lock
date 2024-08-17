@@ -19,3 +19,4 @@ pub use crate::lock::mutex;
 pub use crate::lock::mutex_opt;
 pub use crate::lock::mutex_spin;
 pub use crate::lock::rwlock;
+pub use crate::lock::rwlock_opt;
