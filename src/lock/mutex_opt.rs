@@ -41,7 +41,7 @@ impl<T> Mutex<T> {
 }
 
 pub struct MutexGuard<'a, T> {
-    mutex: &'a Mutex<T>,
+    pub mutex: &'a Mutex<T>,
 }
 
 unsafe impl<T> Sync for MutexGuard<'_, T> where T: Sync {}
