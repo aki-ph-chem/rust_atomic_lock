@@ -53,7 +53,7 @@ impl<T> RwLock<T> {
             if self.state.load(Relaxed) != 0 {
                 // RwLockがまだlockされていたら待機
                 // ただし、チェックした後でウェイク通知が来てない場合のみ
-                atomic_wait::wait(&self.write_wake_counter, w);
+                atomic_wait::wait(&self.writer_wake_counter, w);
             }
         }
 
