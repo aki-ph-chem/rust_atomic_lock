@@ -10,7 +10,7 @@ pub struct RwLock<T> {
     // リーダの数
     state: AtomicU32,
     // ライタを起こす際にインクリメントする
-    write_wake_counter: AtomicU32,
+    writer_wake_counter: AtomicU32,
     // 値
     value: UnsafeCell<T>,
 }
@@ -21,7 +21,7 @@ impl<T> RwLock<T> {
     pub fn new(value: T) -> Self {
         Self {
             state: AtomicU32::new(0),
-            write_wake_counter: AtomicU32::new(0),
+            writer_wake_counter: AtomicU32::new(0),
             value: UnsafeCell::new(value),
         }
     }
@@ -49,7 +49,7 @@ impl<T> RwLock<T> {
             .compare_exchange(0, u32::MAX, Acquire, Relaxed)
             .is_err()
         {
-            let w = self.write_wake_counter.load(Acquire);
+            let w = self.writer_wake_counter.load(Acquire);
             if self.state.load(Relaxed) != 0 {
                 // RwLockがまだlockされていたら待機
                 // ただし、チェックした後でウェイク通知が来てない場合のみ
@@ -78,8 +78,9 @@ impl<T> Deref for ReadGuard<'_, T> {
 impl<T> Drop for ReadGuard<'_, T> {
     fn drop(&mut self) {
         if self.rwlock.state.fetch_sub(1, Release) == 1 {
+            self.rwlock.writer_wake_counter.fetch_add(1, Release);
             // 待機中のライタがあればそれを起こす
-            atomic_wait::wake_one(&self.rwlock.state);
+            atomic_wait::wake_one(&self.rwlock.writer_wake_counter);
         }
     }
 }
@@ -107,6 +108,8 @@ impl<T> DerefMut for WriteGuard<'_, T> {
 impl<T> Drop for WriteGuard<'_, T> {
     fn drop(&mut self) {
         self.rwlock.state.store(0, Release);
+        self.rwlock.writer_wake_counter.fetch_add(1, Release);
+        atomic_wait::wake_one(&self.rwlock.writer_wake_counter);
         // 待機しているリーダとライタを全て起こす
         atomic_wait::wake_all(&self.rwlock.state);
     }
