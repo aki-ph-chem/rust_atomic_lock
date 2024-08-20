@@ -21,7 +21,7 @@ int result2 = 0;
 
 void* fact_worker_2(void* arg) {
     result2 = 0;
-    for(uint64_t i = input; i <= input; ++i) {
+    for(uint64_t i = input / 2; i <= input; ++i) {
         if(input % i == 0) ++result2;
     }
 
