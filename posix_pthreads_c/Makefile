@@ -2,7 +2,8 @@ CC = gcc
 file = ""
 
 ver = 11
-CXX_FLAGS = -O2 -pthread -Wall -std=c${ver}
+OPT=2
+CXX_FLAGS = -O${OPT} -pthread -Wall -std=c${ver}
 
 ${file}.out : ${file}.c
 	${CC} -o $@ $< ${CXX_FLAGS}
