@@ -179,6 +179,12 @@ path = "src/ss_9/mutex_perf.rs"
 name = "mutex_4thread_perf"
 path = "src/ss_9/mutex_4thread_perf.rs"
 
+## examples
+
+[[example]]
+name = "factor_mp"
+path = "examples/factor_mp.rs"
+
 [dependencies]
 atomic-wait = "1"
 libc = "0.2.156"
