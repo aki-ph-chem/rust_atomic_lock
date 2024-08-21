@@ -6,18 +6,24 @@
 #include <stdlib.h>
 #include <time.h>
 
+#define OCCUR_REORDER
 sem_t sem_begin_0, sem_begin_1, sem_end;
 int x, y, read_0, read_1;
 
 // asmはGNU拡張なためコンパイルを通すには`-std=gnu99 or -std=gnu11`が必要
+// そうでなければ変わりに__asm__を使う
 
 void* thread_0_impl(void* param) {
     for(;;) {
         sem_wait(&sem_begin_0);
         x = 1;
         // コンパイラによる並び替えだけを防ぐ
-        //asm volatile("" ::: "memory");
         __asm__ volatile("" ::: "memory");
+
+        // これはプロセッサによる並び替えも防ぐ
+#ifndef OCCUR_REORDER
+        __asm__ volatile("mfence" ::: "memory");
+#endif
         read_0 = y;
 
         sem_post(&sem_end);
@@ -31,11 +37,12 @@ void* thread_1_impl(void* param) {
         sem_wait(&sem_begin_1);
         y = 1;
         // コンパイラによる並び替えだけを防ぐ
-        //asm volatile("" ::: "memory");
         __asm__ volatile("" ::: "memory");
 
         // これはプロセッサによる並び替えも防ぐ
-        //asm volatile("mfence" ::: "memory");
+#ifndef OCCUR_REORDER
+        __asm__ volatile("mfence" ::: "memory");
+#endif
         read_1 = x;
 
         sem_post(&sem_end);
